@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phạm Thị Thu Hà - Creative Design & Branding Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#000000',
+                        light: '#f5f5f5',
+                        accent: '#ff4a00',
+                        gray: {
+                            400: '#a3a3a3',
+                            800: '#1f1f1f',
+                            900: '#121212',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        .exp-item {
+            transition: all 0.4s ease;
+            padding-left: 1.5rem;
+        }
+        @media (min-width: 1024px) {
+            .exp-item {
+                padding-left: 2.5rem;
+            }
+        }
+        .exp-item:hover {
+            padding-left: 2rem;
+            border-left-color: #ff4a00;
+        }
+        @media (min-width: 1024px) {
+            .exp-item:hover {
+                padding-left: 3rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff4a00;
+        }
+        
+        .text-outline {
+            color: #000000;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        .text-outline:hover {
+            color: #f5f5f5;
+            -webkit-text-stroke: 1px #f5f5f5;
+        }
+
+        /* Continuous Scrolling Marquee Animations */
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .animate-scroll-left { animation: scroll-left 40s linear infinite; }
+        .animate-scroll-right { animation: scroll-right 40s linear infinite; }
+        .scroll-pause:hover .animate-scroll-left,
+        .scroll-pause:hover .animate-scroll-right {
+            animation-play-state: paused;
+        }
+
+        /* Auto Color Pulse Animation for Marquee Images */
+        @keyframes pulse-color {
+            0%, 100% { filter: grayscale(100%); opacity: 0.3; }
+            50% { filter: grayscale(0%); opacity: 1; }
+        }
+        .marquee-img {
+            animation: pulse-color 6s ease-in-out infinite;
+        }
+        .marquee-img:nth-child(1) { animation-delay: 0s; }
+        .marquee-img:nth-child(2) { animation-delay: 1s; }
+        .marquee-img:nth-child(3) { animation-delay: 2s; }
+        .marquee-img:nth-child(4) { animation-delay: 3s; }
+        .marquee-img:nth-child(5) { animation-delay: 4s; }
+        .marquee-img:nth-child(6) { animation-delay: 5s; }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-white">
+
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 top-0 bg-black py-4 px-6 md:px-12 flex justify-between items-center shadow-lg border-b border-white/10">
+        <a href="#" class="font-display font-bold text-xl tracking-tighter text-white hover:text-white/80 transition-colors">HA.PHAM</a>
+        <div class="hidden md:flex gap-4 font-sans text-sm tracking-widest uppercase">
+            <a href="#about" class="bg-black text-white px-4 py-2 rounded hover:bg-white/10 transition-colors">Giới thiệu</a>
+            <a href="#experience" class="bg-black text-white px-4 py-2 rounded hover:bg-white/10 transition-colors">Kinh nghiệm</a>
+            <a href="#expertise" class="bg-black text-white px-4 py-2 rounded hover:bg-white/10 transition-colors">Chuyên môn</a>
+            <a href="#contact" class="bg-black text-white px-4 py-2 rounded hover:bg-white/10 transition-colors">Liên hệ</a>
+        </div>
+        <a href="https://drive.google.com/drive/folders/10z61mrgH-DUp5WOtmshVznMozlEuAXeE?usp=share_link" target="_blank" class="hidden md:flex items-center gap-2 border border-white/40 text-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all text-sm font-medium">
+            <i data-lucide="external-link" class="w-4 h-4"></i> Portfolio
+        </a>
+        <button class="md:hidden text-white"><i data-lucide="menu"></i></button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 relative">
+        <div class="max-w-7xl mx-auto w-full">
+            <p class="font-sans text-accent tracking-[0.2em] uppercase text-sm mb-6 reveal">Portfolio Cá Nhân</p>
+            
+            <div class="flex flex-row flex-wrap md:flex-nowrap items-center gap-6 md:gap-10 lg:gap-16 mb-8 reveal delay-100">
+                <h1 class="font-display text-5xl md:text-8xl lg:text-[140px] leading-[0.9] font-bold tracking-tighter flex flex-col shrink-0">
+                    <span class="text-outline w-fit">PHẠM THỊ</span>
+                    <span class="text-white mt-2 lg:mt-4">THU HÀ.</span>
+                </h1>
+                <img src="./images/avatar.JPG" alt="Avatar" class="w-24 h-24 md:w-[180px] md:h-[180px] lg:w-[280px] lg:h-[280px] rounded-full object-cover shrink-0 grayscale hover:grayscale-0 transition-all duration-500 border-2 border-white/20 hover:border-accent cursor-pointer shadow-2xl">
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 md:mt-32">
+                <div class="reveal delay-200">
+                    <h2 class="font-sans text-xl md:text-2xl text-gray-400 font-light max-w-lg leading-relaxed">
+                        Creative Design<br>
+                        <span class="text-red-600 font-medium">Branding & Marketing Manager</span>
+                    </h2>
+                </div>
+                <div class="flex flex-col gap-4 text-gray-400 font-sans reveal delay-300">
+                    <a href="mailto:phamha.hau@gmail.com" class="flex items-center gap-3 hover:text-accent transition-colors w-fit">
+                        <i data-lucide="mail" class="w-5 h-5"></i> phamha.hau@gmail.com
+                    </a>
+                    <a href="tel:0989765698" class="flex items-center gap-3 hover:text-accent transition-colors w-fit">
+                        <i data-lucide="phone" class="w-5 h-5"></i> 0989 765 698
+                    </a>
+                    <p class="flex items-center gap-3 w-fit">
+                        <i data-lucide="map-pin" class="w-5 h-5"></i> 20 Phan Đình Phùng, Ba Đình, Hà Nội
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Strip 1 (Cuộn sang trái) -->
+    <div class="w-full overflow-hidden bg-black py-8 border-y border-white/5 scroll-pause relative z-10">
+        <div class="flex w-max animate-scroll-left">
+            <!-- Nửa 1 -->
+            <div class="flex gap-6 pr-6 w-max">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop" alt="Thiết kế sáng tạo" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=600&auto=format&fit=crop" alt="Branding & Marketing" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=600&auto=format&fit=crop" alt="Đồ họa" class="h-24 md:h-32 w-auto aspect-[4/3] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=600&auto=format&fit=crop" alt="Bảng màu thiết kế" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=600&auto=format&fit=crop" alt="UI UX Thiết kế" class="h-24 md:h-32 w-auto aspect-[3/4] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=600&auto=format&fit=crop" alt="Không gian làm việc" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+            </div>
+            <!-- Nửa 2 (Bản sao để tạo vòng lặp vô tận) -->
+            <div class="flex gap-6 pr-6 w-max">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop" alt="Thiết kế sáng tạo" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=600&auto=format&fit=crop" alt="Branding & Marketing" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=600&auto=format&fit=crop" alt="Đồ họa" class="h-24 md:h-32 w-auto aspect-[4/3] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=600&auto=format&fit=crop" alt="Bảng màu thiết kế" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=600&auto=format&fit=crop" alt="UI UX Thiết kế" class="h-24 md:h-32 w-auto aspect-[3/4] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=600&auto=format&fit=crop" alt="Không gian làm việc" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 md:py-40 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+            <div class="lg:col-span-5 reveal">
+                <h2 class="font-display text-7xl md:text-9xl font-bold text-white mb-4">14+</h2>
+                <p class="font-sans text-accent uppercase tracking-widest text-sm font-semibold">Năm kinh nghiệm</p>
+            </div>
+            <div class="lg:col-span-7 reveal delay-100">
+                <h3 class="font-display text-2xl md:text-4xl mb-8 leading-tight font-medium">Từ một chuyên gia sáng tạo đến nhà lãnh đạo chiến lược quản trị thương hiệu.</h3>
+                <p class="font-sans text-lg text-gray-400 leading-relaxed mb-6">
+                    Tôi sở hữu năng lực làm <span class="text-white font-medium">"end-to-end"</span>: từ việc hoạch định chiến lược cho đến trực tiếp triển khai chi tiết và vận hành thực tế.
+                </p>
+                <p class="font-sans text-lg text-gray-400 leading-relaxed">
+                    Tôi tự tin trong việc dẫn dắt đội ngũ đa chức năng, giải quyết các bài toán thương hiệu phức tạp và tối ưu hóa trải nghiệm khách hàng trên đa nền tảng online và offline.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Strip 2 (Cuộn sang phải) -->
+    <div class="w-full overflow-hidden bg-black py-8 border-y border-white/5 scroll-pause relative z-10">
+        <div class="flex w-max animate-scroll-right">
+            <!-- Nửa 1 -->
+            <div class="flex gap-6 pr-6 w-max">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=600&auto=format&fit=crop" alt="Bảng kế hoạch chiến lược" class="h-24 md:h-32 w-auto aspect-[4/3] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=600&auto=format&fit=crop" alt="Truyền thông đa kênh" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1613909207039-6b173b755cc1?q=80&w=600&auto=format&fit=crop" alt="Trưng bày" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?q=80&w=600&auto=format&fit=crop" alt="Thiết kế E-commerce" class="h-24 md:h-32 w-auto aspect-[3/4] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=600&auto=format&fit=crop" alt="Ý tưởng sáng tạo" class="h-24 md:h-32 w-auto aspect-[4/3] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=600&auto=format&fit=crop" alt="Quản trị đội ngũ" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+            </div>
+            <!-- Nửa 2 -->
+            <div class="flex gap-6 pr-6 w-max">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=600&auto=format&fit=crop" alt="Bảng kế hoạch chiến lược" class="h-24 md:h-32 w-auto aspect-[4/3] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=600&auto=format&fit=crop" alt="Truyền thông đa kênh" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1613909207039-6b173b755cc1?q=80&w=600&auto=format&fit=crop" alt="Trưng bày" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?q=80&w=600&auto=format&fit=crop" alt="Thiết kế E-commerce" class="h-24 md:h-32 w-auto aspect-[3/4] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=600&auto=format&fit=crop" alt="Ý tưởng sáng tạo" class="h-24 md:h-32 w-auto aspect-[4/3] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=600&auto=format&fit=crop" alt="Quản trị đội ngũ" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 md:py-40 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto w-full">
+            <h2 class="font-display text-4xl md:text-6xl font-bold mb-20 reveal">Kinh Nghiệm<br><span class="text-gray-400 text-3xl md:text-5xl">Làm Việc.</span></h2>
+            
+            <div class="flex flex-col border-t border-white/10">
+                
+                <!-- Job 1 -->
+                <div class="exp-item py-10 border-b border-white/10 border-l-4 border-transparent flex flex-col lg:flex-row gap-8 lg:gap-16 reveal">
+                    <div class="lg:w-1/4 shrink-0">
+                        <p class="text-gray-400 font-sans tracking-wider mb-2">2025 - Hiện tại</p>
+                        <h4 class="font-display text-xl font-bold">MOAH Gia dụng & Lifestyle</h4>
+                        <p class="text-accent font-sans text-sm mt-1">Leader Marketing & Thương hiệu</p>
+                    </div>
+                    <div class="lg:w-3/4">
+                        <ul class="space-y-4 font-sans text-gray-300 leading-relaxed list-none">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Hoạch định Chiến lược:</strong> Xây dựng hệ thống nhận diện và chiến lược định vị cho Moah tại Việt Nam.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Quản trị Chiến dịch (IMC):</strong> Thiết lập lộ trình đa kênh (On/Off), điều phối mạng lưới Agency tối ưu nhận diện và doanh số.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Hệ sinh thái Bán lẻ:</strong> Phát triển concept trưng bày (Visual Merchandising) & UX tại điểm bán với đối tác phân phối.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Lãnh đạo Đội ngũ:</strong> Quản lý, đào tạo team truyền thông nội bộ, đảm bảo tính nhất quán từ ý tưởng đến thực thi.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="exp-item py-10 border-b border-white/10 border-l-4 border-transparent flex flex-col lg:flex-row gap-8 lg:gap-16 reveal">
+                    <div class="lg:w-1/4 shrink-0">
+                        <p class="text-gray-400 font-sans tracking-wider mb-2">2025 - Hiện tại</p>
+                        <h4 class="font-display text-xl font-bold">Báo, Phát thanh & Truyền hình HN</h4>
+                        <p class="text-accent font-sans text-sm mt-1">Chuyên viên Thiết kế & Truyền thông</p>
+                    </div>
+                    <div class="lg:w-3/4">
+                        <ul class="space-y-4 font-sans text-gray-300 leading-relaxed list-none">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Chiến lược Phim ảnh:</strong> Chủ trì xây dựng concept và kế hoạch marketing tổng thể cho các dự án trọng điểm.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Sản xuất Creative Assets:</strong> Giám sát quy trình thiết kế (Key Visual, Trailer, Social Assets) & vận hành số.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Quản trị Đối tác:</strong> Giám sát hiện trường, làm việc cùng đối tác sản xuất hậu kỳ & truyền thông đảm bảo tiêu chuẩn nghệ thuật.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="exp-item py-10 border-b border-white/10 border-l-4 border-transparent flex flex-col lg:flex-row gap-8 lg:gap-16 reveal">
+                    <div class="lg:w-1/4 shrink-0">
+                        <p class="text-gray-400 font-sans tracking-wider mb-2">2018 - 2024</p>
+                        <h4 class="font-display text-xl font-bold">CTCP Phân phối SNB</h4>
+                        <p class="text-accent font-sans text-sm mt-1">Trưởng nhóm TK Truyền thông & UX/UI</p>
+                    </div>
+                    <div class="lg:w-3/4">
+                        <ul class="space-y-4 font-sans text-gray-300 leading-relaxed list-none">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Tối ưu UX/UI:</strong> Tái cấu trúc E-commerce (snbshop.vn, snb.com.vn) & gian hàng Shopee, Lazada, Tiki tăng tỷ lệ chuyển đổi (CR).</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Hợp tác Đa chức năng:</strong> Cầu nối Marketing & IT triển khai chiến dịch số, biến ý tưởng đồ họa thành giải pháp kinh doanh.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="star" class="w-5 h-5 text-red-600 shrink-0 mt-1"></i>
+                                <span class="text-white"><strong class="text-white">Thành tựu:</strong> Giải thưởng Thiết kế Xuất sắc năm 2019 nhờ kết hợp hài hòa thẩm mỹ & tối ưu trải nghiệm.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="exp-item py-10 border-b border-white/10 border-l-4 border-transparent flex flex-col lg:flex-row gap-8 lg:gap-16 reveal">
+                    <div class="lg:w-1/4 shrink-0">
+                        <p class="text-gray-400 font-sans tracking-wider mb-2">2016 - 2018</p>
+                        <h4 class="font-display text-xl font-bold">Solution Corp</h4>
+                        <p class="text-accent font-sans text-sm mt-1">Trưởng nhóm Thiết kế</p>
+                    </div>
+                    <div class="lg:w-3/4">
+                        <ul class="space-y-4 font-sans text-gray-300 leading-relaxed list-none">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Tư vấn Thương hiệu:</strong> Tư vấn & thực thi bộ nhận diện, chuyển hóa tầm nhìn thành ngôn ngữ thiết kế thực tiễn.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Quản trị Đội ngũ:</strong> Lãnh đạo nhóm 4 nhân sự, kiểm soát chất lượng, ngân sách & tiến độ khắt khe.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Phát triển Kinh doanh:</strong> Xây dựng Pitch Deck thuyết phục giá trị kinh tế của giải pháp thiết kế cho khách hàng.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 5 -->
+                <div class="exp-item py-10 border-b border-white/10 border-l-4 border-transparent flex flex-col lg:flex-row gap-8 lg:gap-16 reveal">
+                    <div class="lg:w-1/4 shrink-0">
+                        <p class="text-gray-400 font-sans tracking-wider mb-2">2013 - 2016</p>
+                        <h4 class="font-display text-xl font-bold">Ha Do Group</h4>
+                        <p class="text-accent font-sans text-sm mt-1">Chuyên viên Thiết kế & Truyền thông</p>
+                    </div>
+                    <div class="lg:w-3/4">
+                        <ul class="space-y-4 font-sans text-gray-300 leading-relaxed list-none">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Phát triển Chuỗi F&B:</strong> Xây dựng nhận diện, menu, concept không gian các nhà hàng (Kimono, L'Annam, Shamoji...).</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-accent shrink-0 mt-1"></i>
+                                <span><strong class="text-white">Digital Marketing:</strong> Phối hợp IT & nhiếp ảnh xây dựng UI website, đặt nền móng trải nghiệm người dùng hiện đại.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Strip 3 (Cuộn sang trái) -->
+    <div class="w-full overflow-hidden bg-black py-8 border-y border-white/5 scroll-pause relative z-10">
+        <div class="flex w-max animate-scroll-left">
+            <!-- Nửa 1 -->
+            <div class="flex gap-6 pr-6 w-max">
+                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=600&auto=format&fit=crop" alt="Không gian thiết kế" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=600&auto=format&fit=crop" alt="Đồ họa nghệ thuật" class="h-24 md:h-32 w-auto aspect-[3/4] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=600&auto=format&fit=crop" alt="Marketing & Branding" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=600&auto=format&fit=crop" alt="UI / UX Flow" class="h-24 md:h-32 w-auto aspect-square object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop" alt="Nghệ thuật trừu tượng" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=600&auto=format&fit=crop" alt="Hệ thống nhận diện" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+            </div>
+            <!-- Nửa 2 -->
+            <div class="flex gap-6 pr-6 w-max">
+                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=600&auto=format&fit=crop" alt="Không gian thiết kế" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=600&auto=format&fit=crop" alt="Đồ họa nghệ thuật" class="h-24 md:h-32 w-auto aspect-[3/4] object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=600&auto=format&fit=crop" alt="Marketing & Branding" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=600&auto=format&fit=crop" alt="UI / UX Flow" class="h-24 md:h-32 w-auto aspect-square object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop" alt="Nghệ thuật trừu tượng" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=600&auto=format&fit=crop" alt="Hệ thống nhận diện" class="h-24 md:h-32 w-auto aspect-video object-cover rounded-xl marquee-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills & Education Section -->
+    <section id="expertise" class="py-24 md:py-40 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-20">
+            
+            <!-- Skills -->
+            <div class="reveal">
+                <h3 class="font-display text-3xl font-bold mb-10 flex items-center gap-4"><i data-lucide="cpu" class="text-accent"></i> Kỹ Năng & Công Nghệ</h3>
+                
+                <div class="mb-8">
+                    <p class="font-sans text-gray-400 uppercase text-sm tracking-wider mb-4">Ý Tưởng, Thiết Kế & Prototype</p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-sans text-sm">Figma</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-sans text-sm">Photoshop</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-sans text-sm">Illustrator</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-sans text-sm">After Effects</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-sans text-sm">AI Tools</span>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <p class="font-sans text-gray-400 uppercase text-sm tracking-wider mb-4">Sản Xuất Video</p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-sans text-sm">Chỉnh sửa Video</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-sans text-sm">Hậu kỳ Truyền thông Số</span>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-sans text-gray-400 uppercase text-sm tracking-wider mb-4">Quản Trị</p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-sans text-sm">Microsoft Office Suite</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-sans text-sm">Jira</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-sans text-sm">Slack</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="reveal delay-200">
+                <h3 class="font-display text-3xl font-bold mb-10 flex items-center gap-4"><i data-lucide="graduation-cap" class="text-accent"></i> Học Vấn & Chứng Chỉ</h3>
+                
+                <div class="space-y-8">
+                    <div class="p-6 bg-black border border-white/10 rounded-2xl hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="palette" class="w-5 h-5 text-accent"></i>
+                            </div>
+                            <h4 class="font-display text-lg font-bold">Cử nhân Mỹ thuật Công nghiệp</h4>
+                        </div>
+                        <p class="font-sans text-gray-400 ml-14">Thiết kế Đồ họa • Đại học Kiến trúc Hà Nội</p>
+                        <p class="font-sans text-sm text-gray-500 ml-14 mt-1">2008 - 2013</p>
+                    </div>
+
+                    <div class="p-6 bg-black border border-white/10 rounded-2xl hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="layout" class="w-5 h-5 text-accent"></i>
+                            </div>
+                            <h4 class="font-display text-lg font-bold">Chứng chỉ Chuyên gia UX/UI</h4>
+                        </div>
+                        <p class="font-sans text-gray-400 ml-14">Trung tâm Sáng tạo CapiDemy</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer / CTA -->
+    <footer id="contact" class="py-32 px-6 md:px-12 text-center relative overflow-hidden bg-black">
+        <div class="relative z-10 max-w-4xl mx-auto reveal">
+            <h2 class="font-display text-5xl md:text-7xl font-bold mb-8">Sẵn sàng kiến tạo <br><span class="text-accent">Dấu ấn Thương hiệu?</span></h2>
+            <p class="font-sans text-xl text-gray-400 mb-12">Khám phá chi tiết các dự án và triết lý thiết kế của tôi qua Portfolio.</p>
+            
+            <a href="https://drive.google.com/drive/folders/10z61mrgH-DUp5WOtmshVznMozlEuAXeE?usp=share_link" target="_blank" class="inline-flex items-center gap-3 bg-white text-black font-sans font-bold text-lg px-8 py-4 rounded-full hover:bg-accent hover:text-white transition-all transform hover:scale-105 shadow-[0_0_40px_rgba(255,74,0,0.3)]">
+                <i data-lucide="folder-open"></i> Xem Portfolio
+            </a>
+
+            <div class="mt-24 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 font-sans text-sm text-gray-500">
+                <p>&copy; 2026 Phạm Thị Thu Hà. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="mailto:phamha.hau@gmail.com" class="hover:text-white transition-colors">phamha.hau@gmail.com</a>
+                    <a href="tel:0989765698" class="hover:text-white transition-colors">0989 765 698</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons & Animations -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Scroll Reveal Animation Logic
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+    </script>
+</body>
+</html>
